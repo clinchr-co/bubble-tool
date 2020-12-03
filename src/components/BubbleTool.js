@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import BubbleContainer from './BubbleContainer';
 import Output from './Output';
 import makeBubble from '../util/makeBubble';
 
 const BubbleTool = () => {
-  const [bubbles, setBubbles] = React.useState([]);
-  const [selectedIndex, setSelectedIndex] = React.useState(null);
+  const [bubbles, setBubbles] = useState([]);
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
   const checkDeselect = (e) => {
     const clickedOnEmpty = e.target === e.target.getStage();
@@ -39,17 +39,19 @@ const BubbleTool = () => {
   }, [selectedIndex, bubbles]);
 
   return (
-    <div>
+    <>
       <button onClick={addCircle}>Add Bubble</button>
-      <BubbleContainer
-        checkDeselect={checkDeselect}
-        bubbles={bubbles}
-        setBubbles={setBubbles}
-        selectedIndex={selectedIndex}
-        setSelectedIndex={setSelectedIndex}
-      />
-      <Output />
-    </div>
+      <div className="bubble-tool">
+        <BubbleContainer
+          checkDeselect={checkDeselect}
+          bubbles={bubbles}
+          setBubbles={setBubbles}
+          selectedIndex={selectedIndex}
+          setSelectedIndex={setSelectedIndex}
+        />
+        <Output />
+      </div>
+    </>
   );
 };
 

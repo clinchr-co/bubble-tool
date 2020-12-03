@@ -5,3 +5,24 @@
 canvas {
   background-color: grey !important;
 }
+
+.bubble-tool {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-left {
+  flex: 2;
+  min-width: 300px;
+  margin: 10px;
+  background-color: green;
+  overflow-x: hidden;
+}
+
+.col-right {
+  flex: 1;
+  min-width: 200px;
+  margin: 10px;
+  background-color: green;
+  overflow-x: hidden;
+}

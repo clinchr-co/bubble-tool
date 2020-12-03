@@ -2,7 +2,7 @@ import React from 'react';
 
 const Output = () => {
   return (
-    <div className="col">
+    <div className="col-right">
       Output
     </div>
   );

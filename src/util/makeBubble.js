@@ -4,9 +4,9 @@ const makeBubble = (() => {
   return () => {
     index = (index + 1) % colors.length;
     return {
-      x: 200,
-      y: 200,
-      radius: 100,
+      x: 0.3,
+      y: 0.3,
+      radius: 0.25,
       fill: colors[index]
     };
   };
