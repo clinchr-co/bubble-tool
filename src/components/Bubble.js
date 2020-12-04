@@ -1,21 +1,18 @@
 import React, { useEffect, useRef } from 'react';
 import { Circle } from 'react-konva';
 
-const Bubble = ({ shapeProps, transformer, onSelect, onChange }) => {
-  const shapeRef = useRef();
+const Bubble = ({ shapeProps, onSelect, onChange, onRef }) => {
+  const bubbleRef = useRef();
 
   useEffect(() => {
-    if (transformer) {
-      transformer.nodes([shapeRef.current]);
-      transformer.getLayer().batchDraw();
-    }
-  }, [transformer]);
+    onRef(bubbleRef.current);
+  }, [bubbleRef.current]);
 
   return (
     <Circle
       onClick={onSelect}
       onTap={onSelect}
-      ref={shapeRef}
+      ref={bubbleRef}
       {...shapeProps}
       x={shapeProps.x + Math.random() / 1000}
       y={shapeProps.y + Math.random() / 1000}
@@ -28,7 +25,7 @@ const Bubble = ({ shapeProps, transformer, onSelect, onChange }) => {
         });
       }}
       onTransformEnd={(e) => {
-        const node = shapeRef.current;
+        const node = bubbleRef.current;
         const scaleX = node.scaleX();
 
         node.scaleX(1);

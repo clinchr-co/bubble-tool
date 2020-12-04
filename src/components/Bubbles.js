@@ -2,15 +2,13 @@ import React from 'react';
 import Bubble from './Bubble';
 import calculateSize from '../util/calculateSize';
 
-const Bubbles = props => {
-  const {
-    bubbles,
-    setBubbles,
-    selectedIndex,
-    setSelectedIndex,
-    stageProps,
-    trRef
-  } = props;
+const Bubbles = ({ bubbles, setBubbles, setSelectedIndex, stageProps }) => {
+  const onRef = i => node => {
+    const bubblesCopy = bubbles.slice();
+    bubblesCopy[i] = { ...bubblesCopy[i], node };
+    setBubbles(bubblesCopy);
+  }
+
   return (
     <>
       {bubbles.map((bubble, i) => {
@@ -24,7 +22,7 @@ const Bubbles = props => {
           <Bubble
             key={i}
             shapeProps={shapeProps}
-            transformer={i === selectedIndex ? trRef.current : null }
+            onRef={onRef(i)}
             onSelect={() => {
               setSelectedIndex(i);
               setBubbles(bubbles.slice());

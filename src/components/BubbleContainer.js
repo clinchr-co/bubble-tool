@@ -15,7 +15,6 @@ const BubbleContainer = props => {
   } = props;
 
   const containerRef = useRef(null);
-  const trRef = useRef(null);
   const [stageProps, setStageProps] = useState(null)
 
   useEffect(() => {
@@ -39,12 +38,10 @@ const BubbleContainer = props => {
           <Bubbles
             bubbles={bubbles}
             setBubbles={setBubbles}
-            selectedIndex={selectedIndex}
             setSelectedIndex={setSelectedIndex}
             stageProps={stageProps}
-            trRef={trRef}
           />
-          {selectedIndex !== null && <BubbleTransformer trRef={trRef} />}
+          <BubbleTransformer bubbles={bubbles} index={selectedIndex} />
         </Layer>
       </Stage>
     </div>
