@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Stage, Layer } from 'react-konva';
 import Bubble from './Bubble';
+import calculateSize from '../util/calculateSize';
 
-const ASPECT_RATIO = 900 / 1600;
+const ASPECT_RATIO = 9 / 16;
 
 const BubbleContainer = props => {
   const {
@@ -51,12 +52,8 @@ const BubbleContainer = props => {
                 }}
                 onChange={(newAttrs) => {
                   const bubblesCopy = bubbles.slice();
-                  bubblesCopy[i] = {
-                    ...newAttrs,
-                    radius: newAttrs.radius / stageProps.height,
-                    x: newAttrs.x / stageProps.width,
-                    y: newAttrs.y / stageProps.height
-                  };
+                  const sizeAttrs = calculateSize(newAttrs, stageProps);
+                  bubblesCopy[i] = { ...newAttrs, ...sizeAttrs };
                   setBubbles(bubblesCopy);
                 }}
               />

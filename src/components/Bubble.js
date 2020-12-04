@@ -20,6 +20,8 @@ const Bubble = ({ shapeProps, isSelected, onSelect, onChange }) => {
         onTap={onSelect}
         ref={shapeRef}
         {...shapeProps}
+        x={shapeProps.x + Math.random() / 1000}
+        y={shapeProps.y + Math.random() / 1000}
         draggable
         onDragEnd={(e) => {
           onChange({
