@@ -49,7 +49,7 @@ const BubbleTool = () => {
           selectedIndex={selectedIndex}
           setSelectedIndex={setSelectedIndex}
         />
-        <Output />
+        <Output bubbles={bubbles} selectedIndex={selectedIndex} />
       </div>
     </>
   );
