@@ -1,11 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 
 const formatAttrs = ({ x, y, radius }) => `
-{
-  x: ${x.toFixed(3)},
-  y: ${y.toFixed(3)},
-  radius: ${radius.toFixed(3)}
-}
+{ x: ${x.toFixed(3)}, y: ${y.toFixed(3)}, radius: ${radius.toFixed(3)} }
 `.trim();
 
 const Output = ({ bubbles, selectedIndex }) => {
