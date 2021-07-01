@@ -16,10 +16,11 @@ ${i}: Object.freeze({ x: ${squareX.toFixed(3)}, y: ${y.toFixed(3)}, height: ${he
 const Output = ({ bubbles, selectedIndex }) => {
   const outputRef = useRef(null);
   const [copied, setCopied] = useState(false);
+  const [squareFormat, setSquareFormat] = useState(false);
 
   useEffect(() => {
     setCopied(false);
-  }, [bubbles]);
+  }, [bubbles, squareFormat]);
 
   const copyText = () => {
     const selection = window.getSelection();
@@ -32,13 +33,26 @@ const Output = ({ bubbles, selectedIndex }) => {
     setCopied(true);
   };
 
+  const toggleFormat = () => {
+    setSquareFormat(oldValue => !oldValue);
+  };
+
+  const formatButtonText = squareFormat ?
+    'Use Rectangular Coordinates (Breakout Sessions)' :
+    'Use Square Coordinates (Videographer)';
+
+  const formatter = squareFormat ? formatAttrsSquare : formatAttrs;
+
   return (
     <div className="col-right">
       <button onClick={copyText} className="copy-button">
         {copied ? 'Copied!!!' : 'Copy Text'}
       </button>
+      <button onClick={toggleFormat} className="copy-button">
+        {formatButtonText}
+      </button>
       <div className="output" ref={outputRef}>
-        {bubbles.map(formatAttrs).map((bubbleString, i) => {
+        {bubbles.map(formatter).map((bubbleString, i) => {
           return <pre key={i} className={i === selectedIndex ? "highlighted" : ""}>
             {bubbleString}{i === bubbles.length - 1 ? "" : ","}
           </pre>
